@@ -34,5 +34,10 @@ COPY . /workspace/src
 
 RUN /ros_entrypoint.sh catkin_make
 
-# Run the test node
-CMD ["rosrun", "robot_base_test", "robot_base_test_node"]
+# Set environment for ROS
+ENV ROS_MASTER_URI=http://localhost:11311
+ENV ROS_PACKAGE_PATH=/workspace/src:$ROS_PACKAGE_PATH
+ENV ROS_WORKSPACE=/workspace
+
+# Run the test node automatically
+CMD ["/ros_entrypoint.sh", "bash", "-c", "source /opt/ros/noetic/setup.bash && source /workspace/devel/setup.bash && rosrun robot_base_test robot_base_test_node"]
