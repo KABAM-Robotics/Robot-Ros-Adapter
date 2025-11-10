@@ -1,4 +1,4 @@
-#include <robot_base.h>
+#include <robot_base/robot_base.h>
 // Minimal node using the base class directly
 int main(int argc, char** argv) {
     ros::init(argc, argv, "robot_base_test_node");
